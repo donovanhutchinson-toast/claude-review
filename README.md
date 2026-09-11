@@ -5,6 +5,8 @@ hand them back to Claude as a structured blob.
 
 The CLI is Rust. The UI is a React SPA compiled into the binary.
 
+![claude-review](./docs/claude-review.png)
+
 ## Install
 
 Needs Node and Yarn to build the UI, plus a Rust toolchain.
@@ -79,7 +81,7 @@ draft.
 The server binds `127.0.0.1` on a random port with a per-run token. Every `/api`
 route requires it.
 
-`build.rs` runs `yarn build` into `OUT_DIR` and `rust-embed` compiles the result
+`build.rs` runs vite into `OUT_DIR` and `rust-embed` compiles the result
 into the binary, so the UI cannot go stale. Set `CLAUDE_REVIEW_SKIP_UI=1` to build
 without it.
 

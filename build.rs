@@ -41,31 +41,38 @@ fn main() {
         return;
     }
 
-    if !web.join("node_modules").is_dir() {
+    let vite = web
+        .join("node_modules")
+        .join(".bin")
+        .join(if cfg!(windows) { "vite.cmd" } else { "vite" });
+
+    if !vite.exists() {
         panic!(
             "the browser interface cannot be built: {} is missing.\n\
              Run `yarn --cwd web install`, or set {SKIP}=1 to build without it.",
-            web.join("node_modules").display()
+            vite.display()
         );
     }
 
-    let status = Command::new("yarn")
+    let status = Command::new(&vite)
         .current_dir(&web)
-        .args(["build", "--outDir"])
+        .arg("build")
+        .arg("--outDir")
         .arg(&out)
         .arg("--emptyOutDir")
         .status();
 
     match status {
         Ok(status) if status.success() => {}
-        Ok(status) => panic!("`yarn build` failed with {status}"),
+        Ok(status) => panic!("`vite build` failed with {status}"),
         Err(err) => panic!(
-            "could not run yarn: {err}\n\
-             Install Node and Yarn, or set {SKIP}=1 to build without the interface."
+            "could not run {}: {err}\n\
+             Set {SKIP}=1 to build without the interface.",
+            vite.display()
         ),
     }
 
     if !out.join("index.html").is_file() {
-        panic!("`yarn build` produced no index.html in {}", out.display());
+        panic!("`vite build` produced no index.html in {}", out.display());
     }
 }

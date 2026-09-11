@@ -1,0 +1,8 @@
+/target
+/web/dist
+node_modules/
+.claude/review/
+*.log
+**/.yarn/*
+!**/.yarn/patches
+**/.pnp.*

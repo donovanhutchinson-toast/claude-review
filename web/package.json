@@ -1,0 +1,33 @@
+{
+  "name": "claude-review-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Browser UI for claude-review. The CLI is the Rust crate in the parent directory; this builds the bundle it embeds.",
+  "type": "module",
+  "packageManager": "yarn@4.18.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@shikijs/langs": "^4.4.3",
+    "@shikijs/themes": "^4.4.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "shiki": "^4.4.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.7.2",
+    "vite": "^8.2.2",
+    "vitest": "^5.0.0",
+    "zustand": "^5.0.0"
+  }
+}
